@@ -1,4 +1,4 @@
-name: Lib (test & publish)
+name: Build, test, publish
 
 on:
   push:
@@ -6,10 +6,12 @@ on:
     tag:
       - dev-lib/
       - lib/
+      - dev-app/
+      - app/
 
 jobs:
-  build-test-publish:
-    name: Build, test, publish
+  lib:
+    name: Lib (build, test, publish)
     runs-on: ubuntu-latest
     env:
       JS_PROJ: mylib
@@ -73,6 +75,58 @@ jobs:
         run: |
           echo "registry=https://npm.pkg.github.com/chiv-in" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+      - name: Publish the NPM library to GitHub package registry
+        if: ${{ env.PUBLISH == 'true' }}
+        run: |
+          cd ${{env.JS_PROJ}} && npm run mypublish
+
+  app:
+    name: App (test)
+    runs-on: ubuntu-latest
+    env:
+      JS_PROJ: myapp
+      PUBLISH: ${{startsWith(github.ref, 'refs/tags/app/') || startsWith(github.ref, 'refs/tags/dev-app/')}}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Install the required version of NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Check environment
+        run: |
+          docker --version
+          docker-compose --version
+          echo "node: $(node --version)"
+          echo "npm:  $(npm --version)"
+
+      - name: Calculate package and tag versions
+        if: ${{ env.PUBLISH == 'true' }}
+        run: |
+          echo PACKAGE_VERSION=$(node -p "require('./${{env.JS_PROJ}}/package.json').version") >> $GITHUB_ENV
+          echo TAG_VERSION=$(echo ${{github.ref}} | sed -E 's/refs\/tags\/(dev-)?lib\/(.*)/\2/') >> $GITHUB_ENV
+
+      - name: Compare package and tag versions -> should be equal
+        if: ${{ env.PUBLISH == 'true' }}
+        # The step fails if they are not equal
+        run: ${{env.PACKAGE_VERSION == env.TAG_VERSION}}
+
+      - name: Authenticate with NPM GitHub package registry
+        run: |
+          echo "@evoja:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+      - name: Install NPM dependencies
+        run: cd ${{env.JS_PROJ}} && npm ci
+
+      - name: Unit Tests
+        run: |
+          cd ${{env.JS_PROJ}}
+          node src/index
+          [[ $(node src/index) == '102' ]]
 
       - name: Publish the NPM library to GitHub package registry
         if: ${{ env.PUBLISH == 'true' }}
