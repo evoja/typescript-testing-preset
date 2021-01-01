@@ -23,7 +23,7 @@ elif [[ $CMD == "vol" ]]; then
 else
     docker run \
         --rm -it \
-        -v $JS_PROJ:/app/mylib \
+        -v $JS_PROJ:/app/js \
         -v ${PROJECT_NAME}_libs:/app/js/node_modules \
         -v ${PROJECT_NAME}_persistent-home:/persistent-home \
         --name ${PROJECT_NAME} \

@@ -10,7 +10,7 @@ ENV \
     PRE_BUILD_PATH=/pre-build
 USER $APP_USER
 
-WORKDIR /app/mylib
+WORKDIR /app/js
 ENTRYPOINT ["/bin/sh", "/app/init.sh"]
 COPY --chown=$APP_USER:$APP_GROUP init.sh /app/init.sh
 
