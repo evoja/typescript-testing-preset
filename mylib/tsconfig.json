@@ -1,0 +1,15 @@
+{
+  "extends": "./build-tools/tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@evoja/typescript-testing-preset--lib/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "./src",
+    "./test",
+    "./stories"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.lib.json",
+  "compilerOptions": {
+    "jsx": "react-jsxdev",
+    "baseUrl": ".",
+    "paths": {
+      "@evoja/typescript-testing-preset--lib/*": [
+        "../../src/*"
+      ]
+    }
+
+  }
+}
