@@ -1,0 +1,80 @@
+name: Lib (test & publish)
+
+on:
+  push:
+    branch:
+    tag:
+      - dev-lib/
+      - lib/
+
+jobs:
+  build-test-publish:
+    name: Build, test, publish
+    runs-on: ubuntu-latest
+    env:
+      JS_PROJ: mylib
+      PUBLISH: ${{startsWith(github.ref, 'refs/tags/lib/') || startsWith(github.ref, 'refs/tags/dev-lib/')}}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Install the required version of NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Check environment
+        run: |
+          docker --version
+          docker-compose --version
+          echo "node: $(node --version)"
+          echo "npm:  $(npm --version)"
+
+      - name: Calculate package and tag versions
+        if: ${{ env.PUBLISH == 'true' }}
+        run: |
+          echo PACKAGE_VERSION=$(node -p "require('./${{env.JS_PROJ}}/package.json').version") >> $GITHUB_ENV
+          echo TAG_VERSION=$(echo ${{github.ref}} | sed -E 's/refs\/tags\/(dev-)?lib\/(.*)/\2/') >> $GITHUB_ENV
+
+      - name: Compare package and tag versions -> should be equal
+        if: ${{ env.PUBLISH == 'true' }}
+        # The step fails if they are not equal
+        run: ${{env.PACKAGE_VERSION == env.TAG_VERSION}}
+
+      - name: Install NPM dependencies
+        run: cd ${{env.JS_PROJ}} && npm ci
+
+      - name: Compile TypeScripts -> JS
+        run: cd ${{env.JS_PROJ}} && npm run build
+
+      - name: Unit Tests
+        run: cd ${{env.JS_PROJ}} && npm run test-unit -- --ci
+
+      - name: Build Storybook
+        run: cd ${{env.JS_PROJ}} && npm run storybook-build
+
+      - name: Login to GitHub Packages Docker Registry
+        run: |
+          docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GH_PKGS_R_PAT }}
+
+      - name: Run Storyshots in container
+        run: |
+          export $(cat docker/ci.env | grep -v "^#\|^$" | xargs)
+          docker build \
+              --rm \
+              -f ${{env.JS_PROJ}}/build-tools/storyshots/storyshots.Dockerfile \
+              -t chiv-sites-base/gh-build \
+              --build-arg BASE_IMAGE=$LIBS_BASE_IMAGE \
+              ${{env.JS_PROJ}}
+          docker history chiv-sites-base/gh-build
+
+      - name: Authenticate with GitHub package registry
+        if: ${{ env.PUBLISH == 'true' }}
+        run: |
+          echo "registry=https://npm.pkg.github.com/chiv-in" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+      - name: Publish the NPM library to GitHub package registry
+        if: ${{ env.PUBLISH == 'true' }}
+        run: |
+          cd ${{env.JS_PROJ}} && npm run mypublish
