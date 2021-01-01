@@ -1,0 +1,10 @@
+# User specific settings
+.npmrc
+
+# Auto generated output
+out
+
+# Auto generated dev tools
+node_modules
+*.css.d.ts
+*.scss.d.ts
