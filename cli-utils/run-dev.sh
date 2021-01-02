@@ -3,7 +3,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CUR=$(pwd)
 DOCKER=$DIR/../docker
 export $(cat $DOCKER/ci.env | grep -v "^#\|^$" | xargs)
-export DEV_IMAGE=${1:-"docker.pkg.github.com/chiv-in/chiv-site-base/chiv-site-base-dev:${LIBS_TAG}"}
+export DEV_IMAGE=${1:-$DEV_IMAGE}
 export JS_PROJ=$DIR/../${2:-mylib}
 SKIP_MYINSTALL=$3
 

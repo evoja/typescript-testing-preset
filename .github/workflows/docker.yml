@@ -2,7 +2,7 @@ name: Docker images
 
 on:
   push:
-    branch:
+    branches-ignore: ["**"]
     tag:
       - img/
 

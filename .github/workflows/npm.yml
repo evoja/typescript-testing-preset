@@ -65,15 +65,15 @@ jobs:
           docker build \
               --rm \
               -f ${{env.JS_PROJ}}/build-tools/storyshots/storyshots.Dockerfile \
-              -t chiv-sites-base/gh-build \
-              --build-arg BASE_IMAGE=$LIBS_BASE_IMAGE \
+              -t evoja/ttp-shots \
+              --build-arg BASE_IMAGE=$CHROMIUM_NPM_IMAGE \
               ${{env.JS_PROJ}}
-          docker history chiv-sites-base/gh-build
+          docker history evoja/ttp-shots
 
       - name: Authenticate with GitHub package registry
         if: ${{ env.PUBLISH == 'true' }}
         run: |
-          echo "registry=https://npm.pkg.github.com/chiv-in" > ~/.npmrc
+          echo "registry=https://npm.pkg.github.com/" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
 
       - name: Publish the NPM library to GitHub package registry

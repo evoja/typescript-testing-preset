@@ -10,5 +10,5 @@ docker run \
     -v ${PROJECT_NAME}_libs:/from \
     -v $JS_PROJ/node_modules:/to \
     --entrypoint /bin/sh \
-    $DEV_BASE_IMAGE \
+    $DEV_MAGE \
     -c "rsync -la --no-perms --omit-dir-times /from/ /to"
