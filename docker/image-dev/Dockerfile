@@ -1,15 +1,15 @@
 ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
-# Configure environment:
-ENV \
-    APP_GROUP=$APP_USER \
-    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
-    CHIV_CONTENT_PATH=/app/content \
-    PRE_BUILD_PATH=/pre-build
-USER $APP_USER
+RUN \
+    apk add --no-cache --update \
+        sudo bash rsync git \
+        && \
+    echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    addgroup ${APP_USER} wheel && \
+    rm -rf /var/cache/apk/*
 
+USER $APP_USER
 WORKDIR /app/js
 ENTRYPOINT ["/bin/sh", "/app/init.sh"]
 COPY --chown=$APP_USER:$APP_GROUP init.sh /app/init.sh
