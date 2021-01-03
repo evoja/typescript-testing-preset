@@ -2,8 +2,8 @@ name: Build, test, publish
 
 on:
   push:
-    branch:
-    tag:
+    branches: ['*']
+    tags:
       - dev-lib/
       - lib/
       - dev-app/

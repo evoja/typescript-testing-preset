@@ -8,3 +8,7 @@ out
 node_modules
 *.css.d.ts
 *.scss.d.ts
+
+# Published example of compiled result
+!/mylib/out.example/**/*.scss.d.ts
+!/mylib/out.example/**/*.css.d.ts
