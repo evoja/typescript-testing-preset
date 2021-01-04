@@ -1,7 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const loaderUtils = require('loader-utils') // a dependency of webpack
-const x = require('css-loader')
+
 module.exports = ({config}) => {
   config.module.rules[3] = {
     test: /\.m\.css$/,
@@ -71,8 +71,7 @@ function builtInGetLocalIdent(loaderContext, localIdentName, localName, options)
   options.content = options.hashPrefix + request + "+" + localName
   localIdentName = localIdentName.replace(/\[local\]/gi, localName)
   var hash = loaderUtils.interpolateName(loaderContext, localIdentName, options)
-  var hash_rep = hash.replace(new RegExp("[^a-zA-Z0-9\\-_\u00A0-\uFFFF]", "g"), "-").replace(/^((-?[0-9])|--)/, "_$1")
-  return hash_rep
+  return hash.replace(new RegExp("[^a-zA-Z0-9\\-_\u00A0-\uFFFF]", "g"), "-").replace(/^((-?[0-9])|--)/, "_$1")
 }
 
 function getLocalIdent(loaderContext, localIdentName, localName, options) {

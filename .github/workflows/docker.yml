@@ -2,9 +2,8 @@ name: Docker images
 
 on:
   push:
-    branches-ignore: ["**"]
     tags:
-      - img/
+      - img/*
 
 jobs:
   images:

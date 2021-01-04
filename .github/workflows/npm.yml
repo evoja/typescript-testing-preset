@@ -4,10 +4,10 @@ on:
   push:
     branches: ['*']
     tags:
-      - dev-lib/
-      - lib/
-      - dev-app/
-      - app/
+      - dev-lib/*
+      - lib/*
+      - dev-app/*
+      - app/*
 
 jobs:
   lib:

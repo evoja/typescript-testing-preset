@@ -17,7 +17,7 @@
     "mypublish": "cp package.json out/compiled/src && npm publish out/compiled/src",
 
     "clean": "rm -rf lib out",
-    "build": "tcm -p '**/*.m.?(s)css' src && tsc -p . --outDir out/compiled && npm run copy-artefacts",
+    "build": "npm run tcm && tsc -p . --outDir out/compiled && npm run copy-artefacts",
     "test": "npm run clean && npm run build && npm run test-unit && npm run test-shots",
 
     "tcm": "tcm -p '**/*.m.?(s)css' src",
@@ -25,7 +25,6 @@
     "test-unit": "jest --config=build-tools/jest.config.unit.js",
     "test-shots": "npm run storybook-build && npm run jest-run-shots",
     "storybook-build": "build-storybook -c build-tools/storyshots -o out/storybook --quiet",
-    "jest-run-all": "npm run shot-server-start && jest --config=build-tools/jest.config.all.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-run-shots": "npm run shot-server-start && jest --config=build-tools/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-update-snapshots": "npm run shot-server-start && jest --updateSnapshot --config=build-tools/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-update-a-snapshot": "npm run jest -- --updateSnapshot --testNamePattern ",
