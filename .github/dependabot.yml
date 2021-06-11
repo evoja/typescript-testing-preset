@@ -13,10 +13,18 @@ registries:
     username: patuser
     password: ${{secrets.DEPENDABOT_PKGS_R_PAT}}
 
+  github-docker: # Define access for a private registry
+    type: docker-registry
+    url: docker.pkg.github.com
+    username: patuser
+    password: ${{secrets.DEPENDABOT_PKGS_R_PAT}}
+
 updates:
 
   - package-ecosystem: docker
     directory: /docker/image-chromium-npm/
+    registries:
+      - github-docker
     schedule:
       interval: weekly
     open-pull-requests-limit: 1
