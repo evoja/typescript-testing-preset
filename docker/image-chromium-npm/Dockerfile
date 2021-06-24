@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/umputun/baseimage/app:v1.6.1
+FROM ghcr.io/umputun/baseimage/app:v1.7.0
 
 ENV \
     APP_GROUP=$APP_USER \
