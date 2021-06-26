@@ -26,6 +26,6 @@ module.exports = {
     'React': require('react'),
   },
   transform: {
-    '.(js|jsx)': require.resolve('./jest-babel'),
+    '.(js|jsx)': ['babel-jest', { configFile: `${jest_dir}/jest-babel.js` }],
   },
 }
