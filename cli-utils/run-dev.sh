@@ -14,7 +14,7 @@ if [[ $CMD == "init" ]]; then
         -v ${PROJECT_NAME}_libs:/libs \
         -v ${PROJECT_NAME}_persistent-home:/persistent-home \
         --entrypoint chown \
-        alpine:3.12.1 \
+        $CHROMIUM_NPM_IMAGE \
         1001:1001 -R /libs /persistent-home
 elif [[ $CMD == "vol" ]]; then
     docker volume create ${PROJECT_NAME}_libs
