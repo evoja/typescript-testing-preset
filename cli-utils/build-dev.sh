@@ -1,5 +1,5 @@
-#!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#!/bin/sh
+DIR="$( cd "$( dirname "$0" )" && pwd )"
 CUR=$(pwd)
 DOCKER=$DIR/../docker
 export $(cat $DOCKER/ci.env | grep -v "^#\|^$" | xargs)
