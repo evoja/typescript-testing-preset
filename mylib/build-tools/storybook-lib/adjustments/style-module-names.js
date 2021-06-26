@@ -42,12 +42,12 @@ function dedupeDeextLastPathSegment(path) {
 }
 
 
-function adjustStyleModuleNames(config, srcDir) {
+function adjustStyleModuleNames(config, projectPrefix) {
 
   applyToARule(isModuleRule, config.module.rules, rule => {
     rule.use[1].options.modules = {
       ...rule.use[1].options.modules,
-      localIdentName: 'postpoja-[path][name]__[local]', //'[hash:base64:5]__[name]__[local]',
+      localIdentName: projectPrefix + '-[path][name]__[local]', //'[hash:base64:5]__[name]__[local]',
       getLocalIdent: getLocalIdent,
     }
   })

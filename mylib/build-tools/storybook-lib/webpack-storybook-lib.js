@@ -7,6 +7,6 @@ const adjustStyleModuleNames = require('./adjustments/style-module-names')
 module.exports = ({config}) => {
   addScss(config)
   supportStyleModules(config, path.resolve(__dirname, '../../src'))
-  adjustStyleModuleNames(config)
+  adjustStyleModuleNames(config, 'evjttp')
   return config
 }
