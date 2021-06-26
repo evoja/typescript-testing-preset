@@ -1,29 +1,29 @@
 # TypeScript, Jest, Storybook, Image snapshots library and product testing preset
 
-Demo settings of a [TypeScript](https://www.typescriptlang.org/docs) project,
-with unit testing by [Jest](https://jestjs.io/docs/en/getting-started), and with [image shapshot](https://github.com/storybookjs/storybook/tree/master/addons/storyshots/storyshots-puppeteer#imagesnapshots) testing over [Storybook](https://storybook.js.org/docs/react/get-started/introduction)
+Демонстрация настроек [TypeScript](https://www.typescriptlang.org/docs) проекта,
+с юнит-тестами на [Jest](https://jestjs.io/docs/en/getting-started), и тестированием [снапшотами картинок](https://github.com/storybookjs/storybook/tree/master/addons/storyshots/storyshots-puppeteer#imagesnapshots) над [Storybook](https://storybook.js.org/docs/react/get-started/introduction)
 
-## File
-### Repo structure
+## Расположение файлов
+### Структура репозитория
 
-There are several folders with different projects to demonstrate that
-single Git repo and its gh-actions can handle several sub-projecs and NPM packages.
+Независимые проекты лежат в подпапках, как-бы для демонстрации того,
+что один репозиторий вывозит несколько подпроектов и разных NPM пакетов.
 
-If a repo contains only one project,
-then you don't need this additional level of nesting.
-Feel free to put you JS project to the root of your repo.
+Если в репозитории ведётся лишь один проект,
+то этот дополнительный уровень вложенности может быть не нужен,
+и JS проект разместится в корне репозитоиря
 
 #### [mylib](./mylib)
 
-A library that gets published to GitHub NPM registry.
+Проект с библиотекой, которая публикуется в GitHub NPM registry.
 
 #### [myapp](./myapp)
 
-An application that uses the NPM library.
+Проект с приложением (в перспективе - веб-приложением, сейчас оно чисто нодовское), который использует эту библиотеку.
 
 #### [.github/workflows](./.github/workflows)
 
-gh-actions
+Сами знаете что.
 
 #### [cli-utils](./cli-utils)
 
@@ -391,21 +391,20 @@ Storybook прекрасно работал.
 может быть даже можно было бы NextJS переубедить, но я не стал.
 
 
-#### Test class names of CSS modules
+#### Тестировать class-names модулей
 
-Custome module class names that I mentioned above are not covered with tests,
-because Jest just ignores import of CSS.
-
-It would be fun to have them imported and tested.
-
+Те имена классов в CSS модулях, о которых я писал выше, не проверяются тестами,
+потому что Jest тупо игнорит импортирование CSS.
+Было бы прикольно настроить так, чтобы они, таки, импортировались и проверялись.
 
 
-#### Transate the README to English
+#### Перевести README на английский
 
-This text is in Russion because it took a whole day to create it in Russian.
-If I have waited unitl I translate it to English it would have taken a whole year.
+Этот текст на русском, потому что и на русском я с ним возился целый день.
+Если бы я ждал, пока всё аккуратно сформулирую по-английски,
+то опубликовал бы его только через год.
 
-So, I'm glat if someone translates it to English before me.
+В общем, буду рад, если кто-нибудь сделает английскую версию раньше меня.
 
 
 
@@ -413,9 +412,5 @@ So, I'm glat if someone translates it to English before me.
 
 ## Finally
 
-I don't guarantee that it's the minimal preset because it was composed from
-different practical projects. So it can have pieces of extra code which could be
-optimised or removed.
-
-You're welcome to search for code that doesn't help to achive targets that were
-mentioned in this README.
+Я не утверждаю, что этот пресет минимальный, т.к. он был собран из кусков разных проектов, которые как-то работали. А доскональным вычищением от лишнего я не занимался, и мог отаться мусорный код.
+Буду рад, если кто-то отрежет куски кода и настроек, которые не помогают обеспечить те нюансы, которые обозначены в этом README.
