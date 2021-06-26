@@ -44,7 +44,6 @@
     "@storybook/react": "6.3.0",
     "@storybook/preset-typescript": "3.0.0",
     "mini-css-extract-plugin": "1.6.1",
-    "awesome-typescript-loader": "5.2.1",
     "sass": "1.35.1",
     "sass-loader": "12.1.0",
     "css-loader": "5.2.6",

@@ -4,12 +4,6 @@ const transform = require('../storybook-lib/webpack-storybook-lib')
 module.exports = ({config}) => {
   config = transform({config})
 
-  config.module.rules.push({
-    test: /\.(tsx?)$/,
-    loader: require.resolve('awesome-typescript-loader'),
-    options: require('./awesome-typescript-loader.config'),
-  })
-
   config.resolve.extensions.push('.ts', '.tsx')
 
   config.resolve.alias = {
