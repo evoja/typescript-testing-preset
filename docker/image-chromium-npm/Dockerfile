@@ -20,6 +20,10 @@ RUN \
         font-noto \
         font-noto-emoji \
         && \
+    apk add --no-cache --update \
+        --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+        wqy-zenhei \
+        && \
     mkdir /app && chown $APP_USER:$APP_USER /app && \
     rm -rf /var/cache/apk/*
 
