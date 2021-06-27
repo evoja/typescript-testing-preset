@@ -1,6 +1,6 @@
 {
   "name": "@evoja/typescript-testing-preset--lib",
-  "version": "0.0.1",
+  "version": "0.0.2",
 
   "publishConfig": {
     "access": "restricted",
@@ -11,20 +11,29 @@
     "url": "git+https://github.com/evoja/typescript-testing-preset.git"
   },
   "scripts": {
+    "### My npm abbreviations": "//",
     "myinstall": "cp package.json package.json.bak && npm install && mv package.json.bak package.json || (mv package.json.bak package.json && false)",
     "myci": "cp package.json package.json.bak && cp package-lock.json package-lock.json.bak && npm install --no-audit && npm run typed-css-modules && mv package.json.bak package.json || (mv package.json.bak package.json && false) && mv package-lock.json.bak package-lock.json || (mv package-lock.json.bak package-lock.json && false)",
     "mylock": "cp package.json package.json.bak && npm install --packagelock-only && mv package.json.bak package.json || (mv package.json.bak package.json && false)",
     "mypublish": "cp package.json out/compiled/src && npm publish out/compiled/src",
 
+    "### Main tasks": "//",
     "clean": "rm -rf lib out",
-    "build": "npm run typed-css-modules && tsc -p . --outDir out/compiled && npm run copy-artefacts",
+    "build": "npm run typed-css-modules && npm run tsc && npm run copy-artefacts && npm run postcss && npm run rm-src-css && npm run all-css",
     "test": "npm run clean && npm run build && npm run test-unit && npm run test-shots",
 
+    "### Build subtasks": "//",
     "typed-css-modules": "tcm -p '**/*.m.?(s)css' src",
+    "tsc": "tsc -p . --outDir out/compiled",
     "copy-artefacts": "(find src -type f && find test -type f) | grep -E -v  '\\.tsx$'  | grep -E -v  '[^d]\\.ts$' | grep -E -v  '[^.]d\\.ts$' | xargs -I % sh -c 'mkdir -p $(dirname out/compiled/%) && cp % out/compiled/%'",
+    "postcss": "postcss --config build-tools/ -d out/compiled/src/css/ 'out/compiled/src/!(css|sass)/**/*.?(s)css'",
+    "rm-src-css": "cd out/compiled/src && find . -type f | grep -E '\\./css/.*\\.m\\.s?css$' | sed -E \"s/((.*)\\.m(\\.s?css))$/mv \\1 \\2\\3/\" | sh && find . -type f | grep -E -v '^\\./(sass|css)' | grep -E '\\.s?css$' | xargs rm",
+    "all-css": "ls out/compiled/src/css | xargs -I % echo 'import \"./css/%\"' > out/compiled/src/styles.js",
+
+    "### Test subtasks": "//",
     "test-unit": "jest --config=build-tools/jest/jest.config.unit.js",
-    "test-shots": "npm run storybook-build && npm run jest-run-shots",
-    "storybook-build": "build-storybook -c build-tools/storyshots -o out/storybook --quiet",
+    "test-shots": "npm run storyshots-build && npm run jest-run-shots",
+    "storyshots-build": "build-storybook -c build-tools/storyshots -o out/storybook --quiet",
     "jest-run-shots": "npm run shot-server-start && jest --config=build-tools/jest/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-update-snapshots": "npm run shot-server-start && jest --updateSnapshot --config=build-tools/jest/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-update-a-snapshot": "npm run jest -- --updateSnapshot --testNamePattern ",
@@ -48,6 +57,11 @@
     "sass-loader": "12.1.0",
     "css-loader": "5.2.6",
     "http-server": "0.12.3",
+
+    "postcss": "8.3.5",
+    "postcss-cli": "8.3.1",
+    "postcss-scss": "4.0.0",
+    "postcss-modules": "4.1.3",
 
     "jest": "27.0.5",
     "@types/jest": "26.0.23",

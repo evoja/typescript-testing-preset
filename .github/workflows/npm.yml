@@ -53,7 +53,7 @@ jobs:
         run: cd ${{env.JS_PROJ}} && npm run test-unit -- --ci
 
       - name: Build Storybook
-        run: cd ${{env.JS_PROJ}} && npm run storybook-build
+        run: cd ${{env.JS_PROJ}} && npm run storyshots-build
 
       - name: Login to GitHub Packages Docker Registry
         run: |
