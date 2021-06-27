@@ -1,6 +1,6 @@
 {
   "name": "@evoja/typescript-testing-preset--lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
 
   "publishConfig": {
     "access": "restricted",
@@ -26,9 +26,9 @@
     "typed-css-modules": "tcm -p '**/*.m.?(s)css' src",
     "tsc": "tsc -p . --outDir out/compiled",
     "copy-artefacts": "(find src -type f && find test -type f) | grep -E -v  '\\.tsx$'  | grep -E -v  '[^d]\\.ts$' | grep -E -v  '[^.]d\\.ts$' | xargs -I % sh -c 'mkdir -p $(dirname out/compiled/%) && cp % out/compiled/%'",
-    "postcss": "postcss --config build-tools/ -d out/compiled/src/css/ 'out/compiled/src/!(css|sass)/**/*.?(s)css'",
-    "rm-src-css": "cd out/compiled/src && find . -type f | grep -E '\\./css/.*\\.m\\.s?css$' | sed -E \"s/((.*)\\.m(\\.s?css))$/mv \\1 \\2\\3/\" | sh && find . -type f | grep -E -v '^\\./(sass|css)' | grep -E '\\.s?css$' | xargs rm",
-    "all-css": "ls out/compiled/src/css | xargs -I % echo 'import \"./css/%\"' > out/compiled/src/styles.js",
+    "postcss": "postcss --config build-tools/ -r 'out/compiled/src/!(css|sass)/**/*.?(s)css'",
+    "rm-src-css": "cd out/compiled/src && find . -type f | grep -E '\\.*\\.m\\.s?css$' | sed -E \"s/((.*)\\.m(\\.s?css))$/mv \\1 \\2\\3/\" | sh",
+    "all-css": "cd out/compiled/src && find . -type f | grep -E '\\.*\\.s?css$' | xargs -I % echo '@import \"%\";' > ../styles.css && mv ../styles.css ./styles.css",
 
     "### Test subtasks": "//",
     "test-unit": "jest --config=build-tools/jest/jest.config.unit.js",
