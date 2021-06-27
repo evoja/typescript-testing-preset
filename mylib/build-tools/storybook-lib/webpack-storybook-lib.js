@@ -1,8 +1,8 @@
 const path = require('path')
 
-const addScss = require('./adjustments/scss')
-const supportStyleModules = require('./adjustments/style-modules')
-const adjustStyleModuleNames = require('./adjustments/style-module-names')
+const addScss = require('../webpack-adjustments/scss')
+const supportStyleModules = require('../webpack-adjustments/style-modules')
+const adjustStyleModuleNames = require('../webpack-adjustments/style-module-names')
 
 module.exports = ({config}) => {
   addScss(config)
