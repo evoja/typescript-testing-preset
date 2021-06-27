@@ -12,5 +12,5 @@ RUN \
     echo "node: $(node --version)" && \
     echo "npm:  $(npm --version)" && \
     npm run shot-server-start && \
-    npx jest --config=build-tools/jest.config.shots.js --ci && \
+    npx jest --config=build-tools/jest/jest.config.shots.js --ci && \
     npm run shot-server-stop || (npm run shot-server-stop && false)
