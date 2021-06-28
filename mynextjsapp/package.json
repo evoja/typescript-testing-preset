@@ -38,7 +38,7 @@
 
   "devDependencies": {
 
-    "@storybook/react": "6.3.0",
+    "@storybook/react": "6.3.1",
     "@storybook/preset-typescript": "3.0.0",
     "mini-css-extract-plugin": "1.6.1",
     "typed-scss-modules": "4.1.1",
@@ -51,17 +51,17 @@
     "babel-jest": "27.0.5",
     "react-test-renderer": "17.0.2",
     "@types/react-test-renderer": "17.0.1",
-    "@storybook/addon-storyshots": "6.3.0",
+    "@storybook/addon-storyshots": "6.3.1",
     "jest-image-snapshot": "4.5.1",
     "@types/jest-image-snapshot": "4.3.0",
-    "@storybook/addon-storyshots-puppeteer": "6.3.0",
-    "@storybook/builder-webpack5": "6.3.0",
-    "@storybook/manager-webpack5": "6.3.0",
+    "@storybook/addon-storyshots-puppeteer": "6.3.1",
+    "@storybook/builder-webpack5": "6.3.1",
+    "@storybook/manager-webpack5": "6.3.1",
     "webpack": "5.40.0",
     "puppeteer": "10.0.0",
     "http-server": "0.12.3",
 
-    "@types/node": "15.12.4",
+    "@types/node": "15.12.5",
     "@types/react": "17.0.11",
     "@types/react-dom": "17.0.8",
     "@types/classnames": "2.3.1",
