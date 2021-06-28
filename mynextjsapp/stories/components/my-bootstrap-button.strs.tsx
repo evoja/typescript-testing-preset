@@ -2,7 +2,7 @@ import type {Story} from '@storybook/react/types-6-0'
 import {MyBootstrapButton} from 'mynextjsapp@/components/my-bootstrap-button'
 
 export default {
-  title: 'Components / MyBootstrapButton',
+  title: 'Components / MyBootstrapButton (t)',
   component: MyBootstrapButton,
 }
 type TemplateProps = {
@@ -13,6 +13,6 @@ const Template: Story<TemplateProps> = props => {
 
 export const account = (() => {
   const story_case = Template.bind({})
-  story_case.storyName = 'MyBootstrapButton'
+  story_case.storyName = 'MyBootstrapButton (t)'
   return story_case
 })()

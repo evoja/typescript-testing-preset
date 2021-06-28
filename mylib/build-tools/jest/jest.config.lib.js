@@ -16,8 +16,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleFileExtensions: ['js', 'jsx', 'json'],
   moduleNameMapper: {
-    '^@evoja/typescript-testing-preset--lib/(.*)(?:(?<!\\.s?css)$)': `${compiled_dir}/src/$1`,
-    '^@evoja/typescript-testing-preset--lib/(.*)\\.s?css$': `${jest_dir}/jest.mock.blank.js`,
+    '^@evoja/typescript-testing-preset--lib/(.*\\.[tj]sx?)$': `${compiled_dir}/src/$1`,
+    '^@evoja/typescript-testing-preset--lib(.*/[^.]+)$': `${compiled_dir}/src/$1`,
     '\\.(scss|css|less)$': `${jest_dir}/jest.mock.blank.js`,
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       `${jest_dir}/jest.mock.blank.js`,

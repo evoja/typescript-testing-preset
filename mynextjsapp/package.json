@@ -18,7 +18,7 @@
     "### Test subtasks": "//",
     "test-unit": "jest --config=build-tools/jest/jest.config.unit.js",
     "test-shots": "npm run storyshots-build && npm run jest-run-shots",
-    "storyshots-build": "build-storybook -c build-tools/storyshots -o .next/out/storybook -s ./build-tools/storyshots/shots-pub --quiet",
+    "storyshots-build": "build-storybook -c build-tools/storyshots -o .next/out/storybook -s ./public --quiet",
     "storybook-build": "build-storybook -c build-tools/storybook -o .next/out/storybook -s ./public --quiet",
     "jest-run-all": "npm run shot-server-start && jest --config=build-tools/jest/jest.config.all.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
     "jest-run-shots": "npm run shot-server-start && jest --config=build-tools/jest/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",

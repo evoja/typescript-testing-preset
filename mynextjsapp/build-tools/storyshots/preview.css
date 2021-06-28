@@ -1,0 +1,10 @@
+html.evj-shots * {
+    -webkit-animation: none;
+    animation: none;
+    -webkit-transition: none;
+    transition: none;
+}
+
+html.evj-shots .evj-hidden-if-shots {
+    display: none;
+}
