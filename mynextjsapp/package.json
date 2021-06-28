@@ -1,0 +1,83 @@
+{
+  "scripts": {
+    "### My npm abbreviations": "//",
+    "myinstall": "cp package.json package.json.bak && npm install && mv package.json.bak package.json || (mv package.json.bak package.json && false)",
+    "myci": "cp package.json package.json.bak && cp package-lock.json package-lock.json.bak && npm install --no-audit && npm run typed-scss-modules && mv package.json.bak package.json || (mv package.json.bak package.json && false) && mv package-lock.json.bak package-lock.json || (mv package-lock.json.bak package-lock.json && false)",
+    "mylock": "cp package.json package.json.bak && npm install --packagelock-only && mv package.json.bak package.json || (mv package.json.bak package.json && false)",
+
+    "### Main tasks": "//",
+    "clean": "rm -rf .next public/out",
+    "dev": "next dev -p 8080",
+    "build": "npm run typed-scss-modules && next build",
+    "start": "next start -p 8080",
+    "test": "npm run test-unit && npm run test-shots",
+
+    "### Build subtasks": "//",
+    "typed-scss-modules": "tsm -e default 'src/**/*.m.?(s)css' --ignore 'src/pages/**' ",
+
+    "### Test subtasks": "//",
+    "test-unit": "jest --config=build-tools/jest/jest.config.unit.js",
+    "test-shots": "npm run storyshots-build && npm run jest-run-shots",
+    "storyshots-build": "build-storybook -c build-tools/storyshots -o .next/out/storybook -s ./build-tools/storyshots/shots-pub --quiet",
+    "storybook-build": "build-storybook -c build-tools/storybook -o .next/out/storybook -s ./public --quiet",
+    "jest-run-all": "npm run shot-server-start && jest --config=build-tools/jest/jest.config.all.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
+    "jest-run-shots": "npm run shot-server-start && jest --config=build-tools/jest/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
+    "jest-update-snapshots": "npm run shot-server-start && jest --updateSnapshot --config=build-tools/jest/jest.config.shots.js && npm run shot-server-stop || (npm run shot-server-stop && false)",
+    "jest-update-a-snapshot": "npm run jest -- --updateSnapshot --testNamePattern ",
+    "show-coverage": "http-server .next/out/coverage/lcov-report",
+
+    "### Dev servers": "//",
+    "shot-server-start": "http-server .next/out/storybook -s &",
+    "shot-server-stop": "kill $(ps -fA | grep http-server | grep -v grep | awk '{print $1;}')",
+    "storybook": "start-storybook -p 8080 -c build-tools/storybook --ci -s ./public"
+  },
+
+  "peerDependencies": {
+    "image-size": ">=1.0.0"
+  },
+
+  "devDependencies": {
+
+    "@storybook/react": "6.3.0",
+    "@storybook/preset-typescript": "3.0.0",
+    "mini-css-extract-plugin": "1.6.1",
+    "typed-scss-modules": "4.1.1",
+    "sass-loader": "12.1.0",
+    "@svgr/webpack": "5.5.0",
+
+    "jest": "27.0.5",
+    "@types/jest": "26.0.23",
+    "ts-jest": "27.0.3",
+    "babel-jest": "27.0.5",
+    "react-test-renderer": "17.0.2",
+    "@types/react-test-renderer": "17.0.1",
+    "@storybook/addon-storyshots": "6.3.0",
+    "jest-image-snapshot": "4.5.1",
+    "@types/jest-image-snapshot": "4.3.0",
+    "@storybook/addon-storyshots-puppeteer": "6.3.0",
+    "@storybook/builder-webpack5": "6.3.0",
+    "@storybook/manager-webpack5": "6.3.0",
+    "webpack": "5.40.0",
+    "puppeteer": "10.0.0",
+    "http-server": "0.12.3",
+
+    "@types/node": "15.12.4",
+    "@types/react": "17.0.11",
+    "@types/react-dom": "17.0.8",
+    "@types/classnames": "2.3.1",
+    "sass": "1.35.1",
+    "normalize.css": "8.0.1"
+  },
+
+  "dependencies": {
+    "@evoja/typescript-testing-preset--lib": "0.0.3",
+    "typescript": "4.3.4",
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "bootstrap": "5.0.2",
+    "bootstrap-icons": "1.5.0",
+    "react-bootstrap": "2.0.0-beta.2",
+    "classnames": "2.3.1"
+  }
+}

@@ -1,0 +1,8 @@
+$gray-900: #212529 !default; // taken from bootstrap/scss/variables
+$primary: $gray-900 !default;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+$navbar-padding-x: $navbar-padding-y * 2;
+
+@import 'bootstrap/scss/bootstrap';

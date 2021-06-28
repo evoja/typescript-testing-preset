@@ -30,13 +30,6 @@ updates:
     open-pull-requests-limit: 1
     target-branch: dev
 
-  - package-ecosystem: docker
-    directory: /docker/image-dev/
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 1
-    target-branch: dev
-
   - package-ecosystem: npm # See documentation for possible values
     directory: /myapp/ # Location of package manifests
     registries:
@@ -46,8 +39,17 @@ updates:
     open-pull-requests-limit: 1
     target-branch: dev
 
-  - package-ecosystem: npm # See documentation for possible values
-    directory: /mylib/ # Location of package manifests
+  - package-ecosystem: npm
+    directory: /mylib/
+    registries:
+      - github-npm
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 1
+    target-branch: dev
+
+  - package-ecosystem: npm
+    directory: /mynextjsapp/
     registries:
       - github-npm
     schedule:

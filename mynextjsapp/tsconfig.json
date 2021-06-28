@@ -1,0 +1,27 @@
+{
+  "extends": "./build-tools/tsconfig.lib.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "esModuleInterop": true,
+    "module": "esnext",
+
+    "baseUrl": "./non-existing-folder/",
+    "paths": {
+      "mynextjsapp@/*": [
+        "../src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
