@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`button 1`] = `"<button class=\\"\\">add(10, 20) -&gt; 30</button>"`;
+exports[`button 1`] = `"<button class=\\"\\">sum(10, 20) -&gt; 30</button>"`;
 
 exports[`button 2`] = `
 <button
   className=""
 >
-  add(10, 20) -&gt; 30
+  sum(10, 20) -&gt; 30
 </button>
 `;
 
@@ -14,7 +14,7 @@ exports[`button 3`] = `
 <button
   className=""
 >
-  add(10, 20) -&gt; 30
+  sum(10, 20) -&gt; 30
 </button>
 `;
 
@@ -30,11 +30,11 @@ Object {
     "instance": null,
     "nodeType": "host",
     "props": Object {
-      "children": "add(10, 20) -> 30",
+      "children": "sum(10, 20) -> 30",
       "className": "",
     },
     "rendered": Array [
-      "add(10, 20) -> 30",
+      "sum(10, 20) -> 30",
     ],
     "type": "button",
   },

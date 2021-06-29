@@ -28,7 +28,7 @@
     "copy-artefacts": "(find src -type f && find test -type f) | grep -E -v  '\\.tsx$'  | grep -E -v  '[^d]\\.ts$' | grep -E -v  '[^.]d\\.ts$' | xargs -I % sh -c 'mkdir -p $(dirname out/compiled/%) && cp % out/compiled/%'",
     "postcss": "postcss --config build-tools/ -r 'out/compiled/src/!(css|sass)/**/*.?(s)css'",
     "rm-src-css": "cd out/compiled/src && find . -type f | grep -E '\\.*\\.m\\.s?css$' | sed -E \"s/((.*)\\.m(\\.s?css))$/mv \\1 \\2\\3/\" | sh",
-    "all-css": "cd out/compiled/src && find . -type f | grep -E '\\.*\\.s?css$' | xargs -I % echo '@import \"%\";' > ../styles.css && mv ../styles.css ./styles.css",
+    "all-css": "cd out/compiled/src && find . -type f | grep -v -E '^\\./styles\\.css$' | grep -E '\\.*\\.s?css$' | xargs -I % echo '@import \"%\";' > ./styles.css",
 
     "### Test subtasks": "//",
     "test-unit": "jest --config=build-tools/jest/jest.config.unit.js",

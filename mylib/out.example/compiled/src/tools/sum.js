@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.add = void 0;
-function add(a, b) {
+exports.sum = void 0;
+function sum(a, b) {
     return a + b;
 }
-exports.add = add;
-//# sourceMappingURL=add.js.map
+exports.sum = sum;
+//# sourceMappingURL=sum.js.map

@@ -12,7 +12,7 @@ module.exports = (ctx) => {
       'postcss-modules': {
         generateScopedName: (name, filename) => !is_module
           ? name
-          : path_to_class(get_resource_path(base_dir, filename)),
+          : path_to_class(get_resource_path(base_dir, filename) + '__' + name),
       },
     },
   }
@@ -26,7 +26,7 @@ function path_to_class(resource) {
 function get_resource_path(base, file) {
   const relative = path.relative(base, file)
   const deduped = dedupe_deext_last_path_segment(relative)
-  return path.join('chivsitesbase', deduped)
+  return path.join('evjttp', deduped)
 }
 
 function dedupe_deext_last_path_segment(path) {
