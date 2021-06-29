@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@evoja/typescript-testing-preset--lib": "0.0.3"
+    "@evoja/typescript-testing-preset--lib": "0.0.4"
   }
 }
