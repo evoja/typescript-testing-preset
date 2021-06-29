@@ -40,15 +40,15 @@
 
     "@storybook/react": "6.3.1",
     "@storybook/preset-typescript": "3.0.0",
-    "mini-css-extract-plugin": "1.6.1",
+    "mini-css-extract-plugin": "1.6.2",
     "typed-scss-modules": "4.1.1",
     "sass-loader": "12.1.0",
     "@svgr/webpack": "5.5.0",
 
-    "jest": "27.0.5",
+    "jest": "27.0.6",
     "@types/jest": "26.0.23",
     "ts-jest": "27.0.3",
-    "babel-jest": "27.0.5",
+    "babel-jest": "27.0.6",
     "react-test-renderer": "17.0.2",
     "@types/react-test-renderer": "17.0.1",
     "@storybook/addon-storyshots": "6.3.1",
@@ -57,7 +57,7 @@
     "@storybook/addon-storyshots-puppeteer": "6.3.1",
     "@storybook/builder-webpack5": "6.3.1",
     "@storybook/manager-webpack5": "6.3.1",
-    "webpack": "5.40.0",
+    "webpack": "5.41.0",
     "puppeteer": "10.0.0",
     "http-server": "0.12.3",
 
