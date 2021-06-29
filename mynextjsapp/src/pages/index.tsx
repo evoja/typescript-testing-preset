@@ -1,6 +1,6 @@
 import {MyBootstrapButton} from 'mynextjsapp@/components/my-bootstrap-button'
 import {ImagesTable} from 'mynextjsapp@/components/images-table'
-import {AddButtons} from 'mynextjsapp@/components/add-buttons'
+import {SumButtons} from 'mynextjsapp@/components/sum-buttons'
 
 export default function Index() {
   return (
@@ -12,7 +12,7 @@ export default function Index() {
         <ImagesTable/>
       </div>
       <div>
-        <AddButtons/>
+        <SumButtons/>
       </div>
       <div>
       </div>

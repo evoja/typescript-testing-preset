@@ -70,7 +70,7 @@
   },
 
   "dependencies": {
-    "@evoja/typescript-testing-preset--lib": "0.0.3",
+    "@evoja/typescript-testing-preset--lib": "0.0.4",
     "typescript": "4.3.4",
     "next": "11.0.1",
     "react": "17.0.2",

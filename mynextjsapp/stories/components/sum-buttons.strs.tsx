@@ -1,18 +1,18 @@
 import type {Story} from '@storybook/react/types-6-0'
-import {AddButtons} from 'mynextjsapp@/components/add-buttons'
+import {SumButtons} from 'mynextjsapp@/components/sum-buttons'
 
 export default {
-  title: 'Components / AddButtons (t)',
-  component: AddButtons,
+  title: 'Components / SumButtons (t)',
+  component: SumButtons,
 }
 type TemplateProps = {
 }
 const Template: Story<TemplateProps> = props => {
-  return <AddButtons/>
+  return <SumButtons/>
 }
 
 export const account = (() => {
   const story_case = Template.bind({})
-  story_case.storyName = 'AddButtons (t)'
+  story_case.storyName = 'SumButtons (t)'
   return story_case
 })()
