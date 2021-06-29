@@ -49,7 +49,7 @@ jobs:
       - name: Compile TypeScripts -> JS
         run: cd ${{env.JS_PROJ}} && npm run build
 
-      - name: Unit Tests
+      - name: Unit Test
         run: cd ${{env.JS_PROJ}} && npm run test-unit -- --ci
 
       - name: Build Storybook
@@ -122,7 +122,7 @@ jobs:
       - name: Install NPM dependencies
         run: cd ${{env.JS_PROJ}} && npm ci
 
-      - name: Unit Tests
+      - name: Unit Test
         run: |
           cd ${{env.JS_PROJ}}
           node src/index
@@ -174,10 +174,10 @@ jobs:
       - name: Install NPM dependencies
         run: cd ${{env.JS_PROJ}} && npm ci
 
-      - name: Compile TypeScripts -> JS
+      - name: Check that the NextJS app is buildable
         run: cd ${{env.JS_PROJ}} && npm run build
 
-      - name: Unit Tests
+      - name: Unit Test
         run: cd ${{env.JS_PROJ}} && npm run test-unit -- --ci
 
       - name: Build Storybook
