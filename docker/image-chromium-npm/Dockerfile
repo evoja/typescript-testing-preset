@@ -1,4 +1,4 @@
-FROM ghcr.io/umputun/baseimage/app:v1.7.0
+FROM ghcr.io/umputun/baseimage/app:v1.9.1
 
 ENV \
     APP_GROUP=$APP_USER \
